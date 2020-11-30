@@ -1,16 +1,16 @@
 # Use the httpd-parent image as base
 FROM quay.io/redhattraining/httpd-parent
 
-LABEL io.openshift.expose-serices="8080:http"io.openshift.expose-services="8080:http" \
-      io.k8s.description="A basic Apache HTTP Serer child image, uses ONBUILD"io.k8s.description="A basic Apache HTTP Server child image, uses ONBUILD" \
-      io.k8s.display-name="Apache HTTP Serer"io.k8s.display-name="Apache HTTP Server" \
-      io.openshift.expose-serices="8080:http"io.openshift.expose-services="8080:http" \
-      io.openshift.tags="apache, httpd"io.openshift.tags="apache, httpd"
+LABEL io.openshift.expose-serices="8080:http"
+      io.k8s.description="A basic Apache HTTP Serer child image, uses ONBUILD"
+      io.k8s.display-name="Apache HTTP Serer"
+      io.openshift.expose-serices="8080:http"
+      io.openshift.tags="apache, httpd"
 
-RUN sed -i "s/Listen 80/Listen 8080/g" /etc/httpd/conf/httpd.confsed -i "s/Listen 80/Listen 8080/g" /etc/httpd/conf/httpd.conf 
+RUN sed -i "s/Listen 80/Listen 8080/g" /etc/httpd/conf/httpd.conf
 
 RUN chgrp -R 0 /ar/log/httpd /ar/run/httpd && \
-    chmod -R g=u /ar/log/httpd /ar/run/httpdchmod -R g=u /var/log/httpd /var/run/httpd
+    chmod -R g=u /ar/log/httpd /ar/run/httpd
 
 EXPOSE 8080
 
